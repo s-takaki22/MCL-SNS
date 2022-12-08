@@ -39,7 +39,7 @@ public class RegisterMailServlet extends HttpServlet {
 		Random rd = new Random();
 		String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
 		String str = "";
-		for(int i=0; i<10; i++) {
+		for(int i=0; i<6; i++) {
 			str = str + alphabet.charAt(rd.nextInt(alphabet.length()));
 		}
 		
