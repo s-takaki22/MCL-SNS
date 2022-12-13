@@ -35,18 +35,18 @@ public class RegisterMailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		/*ランダムな10桁の英数字を発行*/
+		/*ランダムな8桁の英数字を発行*/
 		Random rd = new Random();
-		String alphabet = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890";
+		String alphabet = "1234567890";
 		String str = "";
-		for(int i=0; i<6; i++) {
+		for(int i=0; i<8; i++) {
 			str = str + alphabet.charAt(rd.nextInt(alphabet.length()));
 		}
 		
 		/*発行した英数字をワンタイムパスワードとしてメールで送信*/
 		String to = request.getParameter("mail");
 		String subject = "会員登録について";
-		String mainText = "あなたの登録コードは" + str + "です。\nこのコードは30分間有効です。\n過ぎた場合にはお手数ですがもう一度やり直してください。";
+		String mainText = "あなたの登録コードは" + str + "です。\nこのコードは3分間有効です。\n過ぎた場合にはお手数ですがもう一度やり直してください。";
 		
 		RegisterMailUtil.sendMail(to, subject, mainText);
 		

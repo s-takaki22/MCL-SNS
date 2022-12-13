@@ -5,17 +5,16 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Philosopher">
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
 		<title>STUDENTS!</title>
 	</head>
 	<body>
 		<h1>STEP1</h1>
-		<h1 style="color:red">ワンタイムパスワードが違う、若しくは入力から30分が経過しています。<br>もう一度送信してください。</h1>
-		<form action="RegisterMailServlet">
-			<table>
-				<tr><td>メールアドレス</td><th><input type="text" name="mail"></th></tr>
-				<tr><th><input type="submit"></th></tr>
-			</table>
+		<h1 style="color:red">ワンタイムパスワードが違う、若しくは入力から3分が経過しています。<br>もう一度送信してください。</h1>
+		<form action="RegisterMailServlet" class="mb-3 m-5">
+			<label class="form-label">メールアドレス</label><input type="text" name="mail" class="form-control"><br>
+			<input type="submit" class="btn btn-primary">
 		</form>
 	</body>
 </html>

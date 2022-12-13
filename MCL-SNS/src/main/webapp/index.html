@@ -4,16 +4,18 @@
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="https://unpkg.com/ress/dist/ress.min.css">
 		<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Philosopher">
+		<!-- CSS only -->
+		<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 		<link rel="stylesheet" href="css/style.css">
 		<title>STUDENTS!</title>
 	</head>
 	<body>
-		<form action="#">
-			<table>
-				<tr><td>メールアドレス</td><th><input type="text"></th></tr>
-				<tr><td>パスワード</td><th><input type="password"></th></tr>
-				<tr><th><input type="submit"value="ログイン"></th></tr>
-			</table>
+		<form action="#" class="mb-5 m-5">
+			<label class="form-label">メールアドレス</label>
+				<input type="text" class="form-control">
+			<label class="form-label">パスワード</label>
+				<input type="password" class="form-control"><br>
+			<input type="submit"value="ログイン" class="btn btn-primary">
 		</form>
 	<a href="RegisterServlet">新規登録はこちら</a>
 	</body>

@@ -48,7 +48,7 @@ public class RegisterOnetimeServlet extends HttpServlet {
 			SimpleDateFormat formatdt = new SimpleDateFormat("yyyy/MM/dd hh:mm:ss");
 			Date date;
 			
-			/*現在時刻を取得後30分の加算処理*/
+			/*現在時刻を取得後3分の加算処理*/
 			try {
 				LocalDateTime time = LocalDateTime.now();
 				DateTimeFormatter newTime = DateTimeFormatter.ofPattern("yyyy/MM/dd hh:mm:ss");
@@ -57,7 +57,7 @@ public class RegisterOnetimeServlet extends HttpServlet {
 				date = formatdt.parse(setTime);
 				Calendar cal = Calendar.getInstance();
 				cal.setTime(date);
-				cal.add(Calendar.MINUTE, 30);
+				cal.add(Calendar.MINUTE, 3);
 				Date time2 = cal.getTime();
 				
 				/*ワンタイムパスワード発行時と現在時刻を比較*/
