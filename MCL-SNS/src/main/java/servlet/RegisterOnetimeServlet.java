@@ -59,6 +59,7 @@ public class RegisterOnetimeServlet extends HttpServlet {
 				cal.setTime(date);
 				cal.add(Calendar.MINUTE, 3);
 				Date time2 = cal.getTime();
+				System.out.println(date);
 				
 				/*ワンタイムパスワード発行時と現在時刻を比較*/
 				if(time1.before(time2)) {

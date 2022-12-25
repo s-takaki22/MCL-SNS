@@ -4,6 +4,11 @@
   <artifactId>MCL-SNS</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <dependencies>
+	  <dependency>
+	    <groupId>net.sourceforge.tess4j</groupId>
+	    <artifactId>tess4j</artifactId>
+	    <version>4.3.1</version>
+	</dependency>
      <dependency>
         <groupId>com.sun.mail</groupId>
         <artifactId>javax.mail</artifactId>
