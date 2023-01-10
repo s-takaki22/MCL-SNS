@@ -152,7 +152,7 @@ public class RegisterAccountServlet extends HttpServlet {
 					
 			} else {
 				System.out.println("名前を認証出来ませんでした。");
-				String view = "WEB-INF/view/register-step1.jsp";
+				String view = "WEB-INF/view/register-step1-error.jsp";
 				RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 				dispatcher.forward(request, response);
 			}
