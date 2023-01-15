@@ -73,7 +73,7 @@ public class LoginServlet extends HttpServlet {
 			List<RegisterNewPost> list = PostRegistrationDAO.selectAllPost(nickName);
 			request.setAttribute("list", list);
 			
-			String view = "WEB-INF/view/sample-menu.jsp";
+			String view = "WEB-INF/view/account-page.jsp";
 			RequestDispatcher dispatcher = request.getRequestDispatcher(view);
 			dispatcher.forward(request, response);
 		}

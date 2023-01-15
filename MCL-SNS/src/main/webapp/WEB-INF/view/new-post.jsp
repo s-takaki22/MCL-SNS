@@ -14,13 +14,12 @@
 	Register ac = (Register) session.getAttribute("user");
 	%>
 		<h1>新規投稿</h1>
-		<p><%=ac.getNickName()%></p>
 		<form action="RegisterNewPostServlet" class="mb-3 m-5">
-			<label>Name</label>
-				<input type="text" value=<%=ac.getNickName()%> name="nickName" readonly="readonly">
+			<input type="hidden" value=<%=ac.getNickName()%> name="nickName">
 			<label class="form-label">投稿内容を入力してください。</label>
 				<textarea name="note" class="form-control"></textarea><br>
 			<input type="submit" class="btn btn-primary">
 		</form>
+		<a href="#" onclick="history.back(-2);return false;">戻る</a>
 	</body>
 </html>

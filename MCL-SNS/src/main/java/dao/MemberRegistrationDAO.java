@@ -32,10 +32,13 @@ public class MemberRegistrationDAO {
 	//会員登録
 	public static int registerMember(Register register) {
 		String sql = "INSERT INTO MCL_SNS_ACCOUNT VALUES(?, ?, ?, ?, ?, ?, ?, ?)";
-		String sql2 = "CREATE TABLE $tablename ( num serial, note text not null )";
+		String sql2 = "CREATE TABLE $tablename ( time timestamp, note text not null)";
+		String sql3 = "CREATE TABLE &tablename2 (name VARCHAR(64))";
 		sql2 = sql2.replace("$tablename", register.getNickName());
+		sql3 = sql3.replace("&tablename2", register.getNickName() + "followlist");
 		int result = 0;
 		int result2 = 0;
+		int result3 = 0;
 		
 		String salt = GenerateSalt.getSalt(32);
 		
@@ -45,6 +48,7 @@ public class MemberRegistrationDAO {
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				PreparedStatement pstmt2 = con.prepareStatement(sql2);
+				PreparedStatement pstmt3 = con.prepareStatement(sql3);
 				){
 			pstmt.setString(1, register.getMail());
 			pstmt.setString(2, register.getNickName());
@@ -57,6 +61,7 @@ public class MemberRegistrationDAO {
 
 			result = pstmt.executeUpdate();
 			result2 = pstmt2.executeUpdate();
+			result3 = pstmt3.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();

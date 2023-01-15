@@ -10,9 +10,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import dto.RegisterNewPost;
+import dto.Follow;
+import dto.MemberSearch;
 
-public class PostRegistrationDAO {
+public class FollowManagementDAO {
 
 	private static Connection getConnection() throws URISyntaxException, SQLException {
 		try {
@@ -28,18 +29,43 @@ public class PostRegistrationDAO {
 
 		return DriverManager.getConnection(dbUrl, username, password);
 	}
+	//アカウント検索
+	public static List<MemberSearch> memberSearchs(MemberSearch member) {
+		String sql = "SELECT nick_name FROM mcl_sns_account WHERE nick_name LIKE '%$search%'";
+		sql = sql.replace("$search", member.getAccountName());
+		List<MemberSearch> result = new ArrayList<>();
 
-	//新規投稿
-	public static int registerMember(RegisterNewPost register) {
-		String sql = "INSERT INTO $tablename VALUES(now(), ?)";
-		sql = sql.replace("$tablename", register.getNickName());
+		try(
+				Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(sql);
+				){
+			try(ResultSet rs = pstmt.executeQuery()){
+				while(rs.next()) {
+					String accountName = rs.getString("nick_name");
+
+					MemberSearch post = new MemberSearch(accountName);
+					result.add(post);
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} catch (URISyntaxException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	//フォローする
+	public static int followAccount(Follow follow) {
+		String sql = "INSERT INTO $tablename VALUES(?)";
+		sql = sql.replace("$tablename", follow.getAccountName() + "followlist");
 		int result = 0;
 
 		try (
 				Connection con = getConnection();
 				PreparedStatement pstmt = con.prepareStatement(sql);
 				){
-			pstmt.setString(1, register.getNote());
+			pstmt.setString(1, follow.getName());
 
 			result = pstmt.executeUpdate();
 
@@ -52,12 +78,11 @@ public class PostRegistrationDAO {
 		}
 		return result;
 	}
-
-	//投稿内容取得
-	public static List<RegisterNewPost> selectAllPost(String nickName) {
+	//フォロー一覧検索
+	public static List<MemberSearch> folllowSearchs(MemberSearch member) {
 		String sql = "SELECT * FROM $tablename";
-		sql = sql.replace("$tablename", nickName);
-		List<RegisterNewPost> result = new ArrayList<>();
+		sql = sql.replace("$tablename", member.getAccountName() + "followlist");
+		List<MemberSearch> result = new ArrayList<>();
 
 		try(
 				Connection con = getConnection();
@@ -65,10 +90,9 @@ public class PostRegistrationDAO {
 				){
 			try(ResultSet rs = pstmt.executeQuery()){
 				while(rs.next()) {
-					String time = rs.getString("time");
-					String note = rs.getString("note");
-					
-					RegisterNewPost post = new RegisterNewPost(time, note);
+					String accountName = rs.getString("name");
+
+					MemberSearch post = new MemberSearch(accountName);
 					result.add(post);
 				}
 			}
@@ -79,4 +103,5 @@ public class PostRegistrationDAO {
 		}
 		return result;
 	}
+
 }

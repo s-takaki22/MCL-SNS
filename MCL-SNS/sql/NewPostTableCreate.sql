@@ -1,4 +1,5 @@
 CREATE TABLE test (
 	num serial,
-	note text  NOT NULL
+	note text  NOT NULL,
+	time timestamp
 );
